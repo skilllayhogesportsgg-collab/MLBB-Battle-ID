@@ -16,31 +16,56 @@
             --glass: rgba(5, 5, 5, 0.95);
         }
 
-        /* DYNAMIC 3D BACKGROUND MOTION */
+        /* LOGIN SCREEN STYLES */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a0000 0%, #000000 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 10000;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .login-box {
+            border: 2px solid var(--red-bright);
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 30px var(--red-dim);
+            text-align: center;
+            clip-path: polygon(10% 0, 90% 0, 100% 15%, 100% 85%, 90% 100%, 10% 100%, 0 85%, 0 15%);
+        }
+
+        .login-box input {
+            display: block; width: 280px; padding: 15px; margin: 15px 0;
+            background: rgba(255, 0, 0, 0.05); border: 1px solid var(--red-dim);
+            color: #0f0; font-family: 'Share Tech Mono', monospace;
+            text-align: center; font-size: 18px; outline: none;
+        }
+
+        .login-box input:focus { border-color: var(--red-bright); box-shadow: 0 0 10px var(--red-glow); }
+
+        .login-box button {
+            width: 100%; padding: 12px; background: var(--red-bright);
+            color: white; border: none; cursor: pointer; font-weight: bold;
+            letter-spacing: 3px; transition: 0.3s;
+        }
+
+        .login-box button:hover { background: white; color: black; }
+
+        /* MAIN TERMINAL STYLES */
         body { 
             margin: 0; height: 100vh; width: 100vw;
-            background: var(--black-pure);
-            color: #ffffff;
+            background: var(--black-pure); color: #ffffff;
             font-family: 'Orbitron', sans-serif;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
-            perspective: 1000px;
+            overflow: hidden; perspective: 1000px;
         }
 
         .bg-motion {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 50% 50%, rgba(80, 0, 0, 0.2) 0%, transparent 70%),
-                url('https://www.transparenttextures.com/patterns/stardust.png');
-            z-index: -1;
-            animation: bgShift 20s ease-in-out infinite alternate;
-        }
-
-        .data-stream {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255, 0, 0, 0.03) 2px, rgba(255, 0, 0, 0.03) 4px);
-            z-index: 0;
-            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, rgba(80, 0, 0, 0.2) 0%, transparent 70%),
+                        url('https://www.transparenttextures.com/patterns/stardust.png');
+            z-index: -1; animation: bgShift 20s ease-in-out infinite alternate;
         }
 
         @keyframes bgShift {
@@ -48,178 +73,113 @@
             100% { transform: scale(1.2) rotate(2deg); }
         }
 
-        /* LARGE TERMINAL DESIGN */
         .terminal-container {
-            width: 90%;
-            max-width: 1000px;
-            height: 700px;
-            background: var(--glass);
-            position: relative;
-            z-index: 10;
+            width: 90%; max-width: 1000px; height: 700px;
+            background: var(--glass); position: relative; z-index: 10;
             clip-path: polygon(5% 0, 95% 0, 100% 7%, 100% 93%, 95% 100%, 5% 100%, 0 93%, 0 7%);
             border: 1px solid var(--red-dim);
             box-shadow: 0 0 100px rgba(255, 0, 0, 0.15), inset 0 0 50px rgba(0, 0, 0, 1);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 40px;
-            box-sizing: border-box;
+            padding: 40px; box-sizing: border-box;
         }
 
-        /* CORNER ACCENTS */
-        .accents div {
-            position: absolute; width: 40px; height: 40px; border: 3px solid var(--red-bright);
-        }
-        .tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
-        .tr { top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
-        .bl { bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
-        .br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+        .sys-title { font-size: 11px; letter-spacing: 8px; color: var(--red-bright); margin-bottom: 10px; text-transform: uppercase; text-align: center; }
 
-        .sys-title {
-            font-size: 11px; letter-spacing: 8px; color: var(--red-bright);
-            margin-bottom: 10px; text-transform: uppercase; text-align: center;
-            text-shadow: 0 0 10px var(--red-glow);
-        }
+        h2 { font-size: 50px; font-weight: 900; margin: 0 0 40px 0; text-transform: uppercase; text-align: center;
+             background: linear-gradient(to bottom, #fff 40%, var(--red-bright)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        h2 {
-            font-size: 50px; font-weight: 900; margin: 0 0 40px 0;
-            text-transform: uppercase; letter-spacing: -2px; text-align: center;
-            background: linear-gradient(to bottom, #fff 40%, var(--red-bright));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        /* INPUT AREA */
-        .search-box {
-            width: 100%; max-width: 600px;
-            display: flex; flex-direction: column; align-items: center;
-        }
-
-        input {
-            width: 100%; background: rgba(255, 0, 0, 0.05); border: 2px solid var(--red-dim);
+        input#judgeIdInput {
+            width: 100%; max-width: 600px; background: rgba(255, 0, 0, 0.05); border: 2px solid var(--red-dim);
             padding: 25px; color: #fff; font-family: 'Share Tech Mono', monospace;
-            font-size: 24px; text-align: center; letter-spacing: 5px;
-            outline: none; transition: 0.3s;
-        }
-
-        input:focus {
-            border-color: var(--red-bright); box-shadow: 0 0 30px rgba(255,0,0,0.2);
-            background: rgba(255,0,0,0.1);
+            font-size: 24px; text-align: center; letter-spacing: 5px; outline: none;
         }
 
         .main-btn {
-            margin-top: 30px; width: 100%;
-            padding: 20px; background: var(--red-bright); color: #fff;
+            margin-top: 30px; width: 100%; max-width: 600px; padding: 20px; background: var(--red-bright); color: #fff;
             border: none; font-family: 'Orbitron', sans-serif; font-weight: 900;
             text-transform: uppercase; letter-spacing: 5px; cursor: pointer;
-            transition: 0.3s; clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
         }
 
-        .main-btn:hover {
-            background: #fff; color: #000; transform: scale(1.02);
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
-        }
-
-        /* SCROLLABLE TABLE AREA */
-        .results-box {
-            width: 100%; height: 100%; display: none; flex-direction: column;
-        }
-
-        .scroll-wrap {
-            flex: 1; overflow-y: auto; margin-top: 10px; padding: 0 15px;
-        }
-
+        .results-box { width: 100%; height: 100%; display: none; flex-direction: column; }
+        .scroll-wrap { flex: 1; overflow-y: auto; margin-top: 10px; padding: 0 15px; }
         table { width: 100%; border-collapse: collapse; font-family: 'Share Tech Mono', monospace; }
-        th { 
-            text-align: left; padding: 15px; color: var(--red-bright); 
-            border-bottom: 2px solid var(--red-dim); text-transform: uppercase;
-            font-size: 14px;
-        }
+        th { text-align: left; padding: 15px; color: var(--red-bright); border-bottom: 2px solid var(--red-dim); }
         td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 18px; }
-        tr:hover td { background: rgba(255,0,0,0.1); color: var(--red-bright); }
-
-        /* CENTERED BACK BUTTON */
-        .back-btn-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
 
         .back-btn {
-            color: #888;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            transition: 0.3s;
-            padding: 10px 30px;
-            border: 1px solid transparent;
-            position: relative;
+            color: #888; cursor: pointer; font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+            padding: 10px 30px; border: 1px solid transparent; text-align: center; margin-bottom: 20px;
         }
-
-        .back-btn:hover {
-            color: var(--red-bright);
-            border: 1px solid var(--red-dim);
-            background: rgba(255, 0, 0, 0.05);
-            text-shadow: 0 0 8px var(--red-glow);
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--red-bright); }
+        .back-btn:hover { color: var(--red-bright); border: 1px solid var(--red-dim); }
 
     </style>
 </head>
 <body>
 
+<!-- LOGIN OVERLAY -->
+<div id="login-overlay">
+    <div class="login-box">
+        <div class="sys-title">Identity Verification Required</div>
+        <h3 style="color: #fff; margin-bottom: 20px;">NEXUS AUTHENTICATION</h3>
+        <input type="text" id="user-input" placeholder="USERNAME" spellcheck="false">
+        <input type="password" id="pass-input" placeholder="PASSWORD">
+        <button onclick="validateLogin()">INITIALIZE LOGIN</button>
+        <p id="error-msg" style="color: yellow; font-size: 12px; margin-top: 15px; display: none; font-family: 'Share Tech Mono';">
+            ACCESS DENIED: INVALID CREDENTIALS
+        </p>
+    </div>
+</div>
+
 <div class="bg-motion"></div>
-<div class="data-stream"></div>
 
 <div class="terminal-container">
-    <div class="accents">
-        <div class="tl"></div><div class="tr"></div>
-        <div class="bl"></div><div class="br"></div>
-    </div>
-
     <!-- SEARCH AREA -->
     <div id="searchArea" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
         <div class="sys-title">Secure Connection Established</div>
         <h2>NEXUS CORE</h2>
-        <div class="search-box">
-            <input type="text" id="judgeIdInput" value="552816571" placeholder="TOURNAMENT_ID">
-            <button id="fetchBtn" class="main-btn">INITIALIZE DECRYPT</button>
-        </div>
+        <input type="text" id="judgeIdInput" value="552816571">
+        <button id="fetchBtn" class="main-btn">INITIALIZE DECRYPT</button>
     </div>
 
     <!-- RESULTS AREA -->
     <div id="resultsArea" class="results-box">
-        <div class="back-btn-container">
-            <div class="back-btn" id="backBtn">[ RETURN TO THE CORE ]</div>
-        </div>
-        
+        <div class="back-btn" id="backBtn">[ RETURN TO THE CORE ]</div>
         <div class="sys-title">Archive Records Retrieved</div>
-        
         <div class="scroll-wrap">
             <table>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>BATTLE_ID</th>
-                        <th>REPORT_TIMESTAMP</th>
+                        <th>TIMESTAMP</th>
                     </tr>
                 </thead>
                 <tbody id="matchList"></tbody>
             </table>
         </div>
     </div>
-
-    <!-- NO DATA -->
-    <div id="noData" style="display:none; text-align: center;">
-        <h3 style="color: var(--red-bright); letter-spacing: 2px;">CRITICAL ERROR: NO RECORDS FOUND</h3>
-        <button onclick="location.reload()" class="main-btn" style="max-width: 300px;">REBOOT SYSTEM</button>
-    </div>
 </div>
 
 <script>
+    // LOGIN FUNCTION
+    function validateLogin() {
+        const user = document.getElementById('user-input').value;
+        const pass = document.getElementById('pass-input').value;
+
+        // သင်ပြောင်းလဲနိုင်သော Username နှင့် Password
+        const CORRECT_USER = "admin@204";
+        const CORRECT_PASS = "Cheepay04";
+
+        if (user === CORRECT_USER && pass === CORRECT_PASS) {
+            document.getElementById('login-overlay').style.display = 'none';
+        } else {
+            document.getElementById('error-msg').style.display = 'block';
+            document.getElementById('pass-input').value = "";
+        }
+    }
+
+    // API & TERMINAL FUNCTION
     const AUTH_KEY = "990df26384c39e0a25ab8abc924be641";
     const BASE_URL = "https://esportsdata-sg.mobilelegends.com/battlelist/judge";
 
@@ -230,11 +190,8 @@
 
     fetchBtn.addEventListener('click', async () => {
         const id = document.getElementById('judgeIdInput').value.trim();
-        if(!id) return alert("ID REQUIRED");
+        fetchBtn.innerText = "DECRYPTING...";
         
-        fetchBtn.innerText = "RUNNING DECRYPT...";
-        fetchBtn.disabled = true;
-
         try {
             const res = await axios.get(BASE_URL, { params: { authkey: AUTH_KEY, judgeid: id } });
             const data = res.data.result || [];
@@ -242,31 +199,26 @@
             if (data.length > 0) {
                 list.innerHTML = data.map((m, i) => `
                     <tr>
-                        <td style="color:var(--red-dim)">${(i+1).toString().padStart(2, '0')}</td>
+                        <td style="color:var(--red-dim)">${(i+1)}</td>
                         <td><strong>${m.battleid}</strong></td>
                         <td style="color:#666; font-size:14px;">${m.reporttime}</td>
                     </tr>
                 `).join('');
                 searchArea.style.display = "none";
                 resultsArea.style.display = "flex";
-                document.getElementById('noData').style.display = "none";
             } else {
-                searchArea.style.display = "none";
-                resultsArea.style.display = "none";
-                document.getElementById('noData').style.display = "block";
+                alert("NO RECORDS FOUND");
             }
         } catch (e) { 
-            alert("NETWORK BREACH DETECTED: CONNECTION RESET"); 
+            alert("CONNECTION ERROR"); 
         } finally {
             fetchBtn.innerText = "INITIALIZE DECRYPT";
-            fetchBtn.disabled = false;
         }
     });
 
     document.getElementById('backBtn').addEventListener('click', () => {
         searchArea.style.display = "flex";
         resultsArea.style.display = "none";
-        document.getElementById('noData').style.display = "none";
     });
 </script>
 
